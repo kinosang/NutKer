@@ -1,0 +1,144 @@
+$def with (articles_m, articles, offset)
+
+<!doctype html>
+<!--[if IE 6 ]><html class="ie6"> <![endif]-->
+<!--[if IE 7 ]><html class="ie7"> <![endif]-->
+<!--[if IE 8 ]><html class="ie8"> <![endif]-->
+<!--[if (gt IE 7)|!(IE)]><!-->
+<html>
+<!--<![endif]-->
+
+<head>
+    <meta charset="utf-8">
+    <title>果壳党</title>
+    <meta name="description" content="">
+    <link rel="stylesheet" href="/static/css/documenter_style.css" media="all">
+    <script src="/static/js/jquery.js"></script>
+    <script src="/static/js/jquery.scrollTo.js"></script>
+    <script src="/static/js/jquery.easing.js"></script>
+    <script>
+    document.createElement('section');
+    var duration = '500',
+        easing = 'swing';
+    </script>
+    <script src="/static/js/script.js"></script>
+    <style>
+    html {
+        background-color: #FFFFFF;
+        color: #383838;
+    }
+
+    ::-moz-selection {
+        background: #444444;
+        color: #DDDDDD;
+    }
+
+    ::selection {
+        background: #444444;
+        color: #DDDDDD;
+    }
+
+    #documenter_sidebar #documenter_logo {
+        background-image: url();
+    }
+
+    a {
+        color: #7cc576;
+    }
+
+    .btn {
+        border-radius: 3px;
+    }
+
+    .btn-primary {
+        background: #7cc576;
+        filter: progid: DXImageTransform.Microsoft.gradient(startColorstr='#0088CC', endColorstr='#0044CC', GradientType=0);
+        border-color: #0044CC #0044CC #bfbfbf;
+        color: #FFFFFF;
+    }
+
+    .btn-primary:hover,
+    .btn-primary:active,
+    .btn-primary.active,
+    .btn-primary.disabled,
+    .btn-primary[disabled] {
+        border-color: #0088CC #0088CC #bfbfbf;
+        background-color: #0044CC;
+    }
+
+    hr {
+        border-top: 1px solid #EBEBEB;
+        border-bottom: 1px solid #FFFFFF;
+    }
+
+    #documenter_sidebar,
+    #documenter_sidebar ul a {
+        background-color: #f5f5f5;
+        color: #222222;
+    }
+
+    #documenter_sidebar ul a {
+        -webkit-text-shadow: 1px 1px 0px #EEEEEE;
+        -moz-text-shadow: 1px 1px 0px #EEEEEE;
+        text-shadow: 1px 1px 0px #EEEEEE;
+    }
+
+    #documenter_sidebar ul {}
+
+    #documenter_sidebar ul a {
+        color: #444444;
+    }
+
+    #documenter_sidebar ul a:hover {
+        background: #7cc576;
+        color: white;
+    }
+
+    #documenter_sidebar ul a.current {
+        background: #7cc576;
+        color: white;
+    }
+
+    #documenter_copyright {
+        display: block !important;
+        visibility: visible !important;
+    }
+
+    pre {
+        font-size: 22px;
+        color: #7CC576;
+    }
+
+    #documenter_content h3 {
+        font-weight: bold !important;
+    }
+    </style>
+</head>
+
+<body class="documenter-project-itemname">
+    <div id="documenter_sidebar">
+        <a href="#documenter_cover" id="documenter_logo"><img src="http://nutker.party/image/NutKer.png"></a>
+        <ul id="documenter_nav">
+        	$for article in articles_m:
+	            <li><a class="current" href="#article_$article.id">$article.title</a></li>
+
+		$if offset >= 10:
+	        <li style="width: 50%; float: left;"><a href="/page/$(offset-10)">上一页</a></li>
+        <li style="width: 50%; float: left;"><a style="text-align: left; padding-left: 6px;" href="/page/$(offset+10)">下一页</a></li>
+        </ul>
+        <div id="documenter_copyright">Re-rendered by <a href="http://nutker.party">NutKer</a>.
+            <br>Proudly Using Web.py.
+        </div>
+    </div>
+    <div id="documenter_content">
+        $for article in articles:
+	        <section id="article_$article.id">
+	            <h1>$article.title</h1>
+	            <h2>作者：<a href="$article.author_url">$article.author</a> | 分类：<a href="$article.subject_url">$article.subject</a> | 发布于：$article.date_published<br>原文链接：<a href="$article.url">$article.url</a></h2>
+	            <hr>
+	            $:article.content.replace("<section>", "<article>").replace("</section>", "</article>")
+	        </section>
+    </div>
+</body>
+
+</html>

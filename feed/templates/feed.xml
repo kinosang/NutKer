@@ -1,0 +1,19 @@
+$def with (articles)
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0">
+<channel>
+<title>果壳科学人</title>
+<link>http://www.guokr.com/scientific/</link>
+<description>科技有意思</description>
+<language>zh-CN</language>
+$for article in articles:
+    <item>
+    <title>$article.title</title>
+    <link>$article.url</link>
+    <author><![CDATA[$article.author]]></author>
+    <pubDate>$article.date_published</pubDate>
+    <category><![CDATA[$article.subject]]></category>
+    <description><![CDATA[$:article.content]]></description>
+    </item>
+</channel>
+</rss>
